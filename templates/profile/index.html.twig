@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+
+<div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p>Hello, {{ app.user.email }}</p>
+        {% else %}
+            <p>Hello, a stranger</p>
+    {% endif %}
+
+    <a href="{{ path('app_home') }}">Home</a><br>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('app_edit_profile') }}"> Editing profile </a><br>
+        <a href="{{ path('app_logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Login</a><br>
+            <a href="{{ path('app_register') }}">Registration</a>
+    {% endif %}
+</div>
+
+{% endblock %}
+

@@ -2,9 +2,11 @@
 
 {% block body %}
     <div>
-        {{ app.user.email }}
+        HOME {# app.user.email #}
     </div>
     <div>
-        <a href="/logout"> Logout </a>
+        <a href="{{ path('app_profile') }}"> Profile </a><br>
+        <a href="{{ path('app_login') }}"> Login </a><br>
+        <a href="/logout"> Logout </a><br>
     </div>
 {% endblock %}
