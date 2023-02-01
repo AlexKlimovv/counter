@@ -17,11 +17,12 @@ security:
                 enable_csrf: true
                 login_path: app_login
                 check_path: app_login
+                default_target_path: app_dashboard
                 username_parameter: email
             logout:
                 path: app_logout
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/dashboard(/|$), roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
