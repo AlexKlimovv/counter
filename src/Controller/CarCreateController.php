@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Car;
 use App\Entity\User;
-use App\Form\EditProfileType;
+use App\Form\CreateCarType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProfileEditController extends AbstractController
+class CarCreateController extends AbstractController
 {
     private EntityManagerInterface $entityManager;
 
@@ -18,19 +19,27 @@ class ProfileEditController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-    #[Route('/dashboard/profile/edit', name: 'app_profile_edit')]
+
+    #[Route('/dashboard/car/create', name: 'app_car_create')]
     public function __invoke(Request $request): Response
     {
         /** @var User $user */
-        $user = $this->getUser(); // получить текущего юзера
-        $form = $this->createForm(EditProfileType::class, $user); // инициализация формы
-        $form->handleRequest($request); // обработка реквеста после отправки формы
+        $user = $this->getUser();
+        $form = $this->createForm(CreateCarType::class);
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush(); //Сохранение в БД
-            return $this->redirectToRoute('app_profile');
+            /** @var Car $car */
+            $car = $form->getData();
+            $car->setUser($user);
+            $this->entityManager->persist($car);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute("app_car");
         }
-        return $this->render("profile_edit.html.twig", [
+        return $this->render("car/create.html.twig", [
             "form" => $form->createView()
         ]);
     }
+
+
 }

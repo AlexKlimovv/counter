@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CarController!{% endblock %}
+
+{% block body %}
+
+<div>
+    {% for car in cars %}
+        <div>
+            {{ car.carBrand }}
+        </div>
+        <div>
+            {{ car.carModel }}
+        </div>
+            <a href={{ path('app_car_edit', { car: car.id }) }}>Edit</a>
+    {% endfor %}
+</div>
+{% endblock %}
