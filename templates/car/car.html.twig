@@ -1,18 +1,38 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello CarController!{% endblock %}
+{% block title %}Your cars{% endblock %}
 
 {% block body %}
-
-<div>
-    {% for car in cars %}
+    <body>
         <div>
-            {{ car.carBrand }}
+            <table>
+                <thead>
+                    <tr>
+                        <td>Brand</td>
+                        <td>Model</td>
+                        <td>Registration number</td>
+                        <td>Production year</td>
+                        <td>Capacity</td>
+                        <td>Type of fuel</td>
+                        <td>VIN</td>
+                    </tr>
+                </thead>
+                {% for car in cars %}
+                <tbody>
+                    <tr>
+                        <td> {{ car.carBrand }} </td>
+                        <td> {{ car.carModel }} </td>
+                        <td> {{ car.regNumber }} </td>
+                        <td> {{ car.prodYear }} </td>
+                        <td> {{ car.capacity }} </td>
+                        <td> {{ car.typeOfFuel }} </td>
+                        <td> {{ car.vin }} </td>
+                        <td><a class="" href="{{ path('app_car_edit', { car: car.id }) }}">Edit</a></td>
+                        <td><a href="{{ path('app_car_delete', { car: car.id }) }}">Delete</a></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
         </div>
-        <div>
-            {{ car.carModel }}
-        </div>
-            <a href={{ path('app_car_edit', { car: car.id }) }}>Edit</a>
-    {% endfor %}
-</div>
+    <a href="{{ path('app_car_create') }}"> Create car</a>
+    </body>
 {% endblock %}

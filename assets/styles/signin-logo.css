@@ -1,0 +1,15 @@
+.imgimg {
+    font-size: 2rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+@media (min-width: 768px) {
+    .imgimg {
+        font-size: 3.5rem;
+    }
+}
+h1 .h3 .mb-3 .fw-normal .foo {
+    font-size: 3rem;
+}

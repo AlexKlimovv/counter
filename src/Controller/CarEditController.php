@@ -31,9 +31,5 @@ class CarEditController extends AbstractController
         return $this->render("car/create.html.twig", [
             "form" => $form->createView()
         ]);
-
-
     }
-
-
 }

@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 
 class CreateCarType extends AbstractType
@@ -18,7 +20,13 @@ class CreateCarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('carBrand', TextType::class)
+            ->add('carBrand', TextType::class, [
+                'attr' => ['placeholder' => 'Brand'],
+                'constraints' => [
+                    new NotBlank(),
+                    new Length(['min' => 3]),
+                ],
+            ])
             ->add('carModel', TextType::class)
             ->add('regNumber', TextType::class)
             ->add('vin', TextType::class)
