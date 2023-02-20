@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
-{% block title %}Home{% endblock %}
 
 {% block body %}
     <div>
         HOME
     </div>
     <div>
+        <a class="" href="{{ path('app_profile') }}"> Profile </a><br>
         <a href="{{ path('app_login') }}"> Login </a><br>
-        <a href="{{ path('app_dashboard') }}"> Dashboard </a><br>
+        <a href="{{ path('app_logout') }}"> Logout </a><br>
     </div>
 {% endblock %}
