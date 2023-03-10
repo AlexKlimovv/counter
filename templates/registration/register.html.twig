@@ -1,36 +1,30 @@
 {% extends 'base.html.twig' %}
-
 {% block head %}
-<title>Register</title>
-<link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('') }}">
 {% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4"><h1 class="text-center">Register</h1></div>
-        <div class="col-md-4"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
-            {{ form_row(registrationForm.agreeTerms) }}
-            {{ form_row(registrationForm.submit) }}
-            {{ form_end(registrationForm) }}
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-</div>
-
-
-
+    <body class="text-center">
+        <main class="form-reg">
+            <div class="container text-center shadow-lg">
+                <div class="row">
+                    <div class="col-12">
+                        <img class="imgimg" src="{{ asset('/build/images/car20_112837.svg') }}" alt="" width="72" height="57">
+                        <h1 class="h3 mb-3 fw-normal">Please register</h1>
+                        {% for flash_error in app.flashes('verify_email_error') %}
+                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                        {% endfor %}
+                            {{ form_start(registrationForm) }}
+                            {{ form_row(registrationForm.email) }}
+                            {{ form_row(registrationForm.plainPassword) }}
+                            {{ form_row(registrationForm.agreeTerms) }}
+                            {{ form_row(registrationForm.submit) }}
+                            {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
 {% endblock %}

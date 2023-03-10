@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 {% block head %}
-    <title>Sign in</title>
+    <title>Login</title>
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">
 {% endblock %}
 
 {% block body %}
 <body class="text-center">
-    <main class="form-signin">
-        <img class="imgimg" src="{{ asset('/build/images/bootstrap-logo.svg') }}" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal foo">Please sign in</h1>
+    <main class="form-signin shadow-lg">
+        <img class="imgimg" src="{{ asset('/build/images/car20_112837.svg') }}" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         {% if error %}
             {{ error.messageKey|trans(error.messageData, 'security') }}
         {% endif %}
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <p>Already logged in</p>
-            <a href="{{ path('app_dashboard') }}">Dashboard</a>
+            <a class="btn btn-primary" href="{{ path('app_dashboard') }}">Dashboard</a>
         {% else %}
             <form action="{{ path('app_login') }}" method="post">
                 <div class="form-floating">
@@ -31,12 +31,15 @@
                     </label>
                 </div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+                <button class="w-100 btn-lg btn-primary" type="submit">Login</button>
+                <p class="m-2">or</p>
+                <form>
+                    <button type="submit" formaction="{{ path('app_register') }}" class="w-100 btn-lg btn-primary">Register</button>
+                </form>
                 <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
             </form>
         {% endif %}
     </main>
-
 
 </body>
 {% endblock %}

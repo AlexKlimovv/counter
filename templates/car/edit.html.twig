@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CarController!{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
+    <div class="shadow-lg mb-4">
+        {% include 'navbar.html.twig' %}
+    </div>
+    <div>
+        {{ form(form) }}
 
-<div>
-    {{ form(form) }}
-
-</div>
+    </div>
 {% endblock %}

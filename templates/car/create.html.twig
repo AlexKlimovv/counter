@@ -3,11 +3,15 @@
 {% block title %}Create Car{% endblock %}
 
 {% block body %}
-
-<div>
-    <table>
-        {{ form(form) }}
-    </table>
-
+    <div class="shadow-lg mb-4">
+        {% include 'navbar.html.twig' %}
+    </div>
+    <div class="div row">
+        <div class="div col-4">
+            <table class="table">
+                {{ form(form) }}
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

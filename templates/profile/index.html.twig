@@ -3,14 +3,14 @@
 {% block title %}Profile{% endblock %}
 
 {% block body %}
+    <div class="shadow-lg mb-4">
+        {% include 'navbar.html.twig' %}
+    </div>
 
 <div>
     <p>Hello, {{ user.name }}</p>
     <p>Hello, {{ user.email }}</p>
-    <a href="{{ path('app_profile_edit') }}">Edit profile</a><br>
-    <a href="{{ path('app_dashboard') }}">Dashboard</a><br>
-    <a href="{{ path('app_car') }}">Car</a><br>
-
+    <a class="btn btn-primary" href="{{ path('app_profile_edit') }}">Edit profile</a>
 </div>
 
 {% endblock %}

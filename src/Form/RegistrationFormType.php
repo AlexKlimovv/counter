@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -18,20 +19,31 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'name@example.com',
+                ],
+                'label' => 'Email:',
+                'row_attr' => ['class' => 'form-floating']
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
+                    new IsTrue(['message' => 'You should agree to our terms.']),
                 ],
+                'label' => 'I agree',
+                'row_attr' => ['class' => 'checkbox mb-3'] //???????????????????????/
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'placeholder' => 'Password'
+                ],
+                'label' => 'Password:',
+                'row_attr' => ['class' => 'form-floating'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -45,11 +57,9 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add("submit", SubmitType::class, [ //[] - class for bootstrap
-                'label' => 'Sign up',
-                'attr' => ['class' => 'btn btn-primary w-100']
+                'label' => 'Registration',
+                'attr' => ['class' => 'w-100 btn-lg btn-primary']
             ]);
-        ;
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void

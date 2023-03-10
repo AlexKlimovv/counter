@@ -21,18 +21,47 @@ class CreateCarType extends AbstractType
     {
         $builder
             ->add('carBrand', TextType::class, [
-                'attr' => ['placeholder' => 'Brand'],
+                'label' => 'Brand',
                 'constraints' => [
                     new NotBlank(),
-                    new Length(['min' => 3]),
+                    new Length([
+                        'min' => 3
+                        ]),
                 ],
             ])
-            ->add('carModel', TextType::class)
-            ->add('regNumber', TextType::class)
-            ->add('vin', TextType::class)
-            ->add('prodYear', IntegerType::class)
-            ->add('typeOfFuel', TextType::class)
-            ->add('capacity', IntegerType::class)
+            ->add('carModel', TextType::class, [
+                'label' => 'Model'
+                ]
+            )
+            ->add('regNumber', TextType::class, [
+                'label' => 'Registration number'
+            ])
+            ->add('vin', TextType::class,[
+                'label' => 'VIN'
+            ])
+            ->add('prodYear', IntegerType::class, [
+                'label' => 'Production year',
+                'attr' => [
+                    'placeholder' => 'example 2010'
+                ],
+                'constraints' => [
+                    new Length([
+                        'min' => 4,
+                        'max' => 4,
+                        'exactMessage' => 'Value is wrong. It should have 4 characters'
+                    ])
+                ]
+            ])
+            ->add('typeOfFuel', TextType::class, [
+                'label' => 'Fuel'
+            ])
+            ->add('capacity', IntegerType::class, [
+                'label' => 'Capacity ccm',
+                'attr' => [
+                    'placeholder' => 'example 1800',
+                    'maxlength' => '4' // doesn't work??
+                ]
+            ])
             ->add('submit', SubmitType::class);
     }
 
