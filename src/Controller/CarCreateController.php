@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Dto\CarDto;
 use App\Entity\Car;
 use App\Entity\User;
 use App\Form\CreateCarType;
@@ -28,9 +29,20 @@ class CarCreateController extends AbstractController
         $form = $this->createForm(CreateCarType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Car $car */
-            $car = $form->getData();
-            $car->setUser($user);
+            /** @var CarDto $carDto */
+            $carDto = $form->getData();
+            $car = new Car();
+            $car
+                ->setUser($user)
+                ->setCarBrand($carDto->carBrand)
+                ->setCarModel($carDto->carModel)
+                ->setRegNumber($carDto->regNumber)
+                ->setVin($carDto->vin)
+                ->setProdYear($carDto->prodYear)
+                ->setTypeOfFuel($carDto->typeOfFuel)
+                ->setCapacity($carDto->capacity)
+            ;
+
             $this->entityManager->persist($car);
             $this->entityManager->flush();
 

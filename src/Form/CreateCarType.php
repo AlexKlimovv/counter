@@ -2,15 +2,18 @@
 
 namespace App\Form;
 
+use App\Dto\CarDto;
 use App\Entity\Car;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -21,13 +24,7 @@ class CreateCarType extends AbstractType
     {
         $builder
             ->add('carBrand', TextType::class, [
-                'label' => 'Brand',
-                'constraints' => [
-                    new NotBlank(),
-                    new Length([
-                        'min' => 3
-                        ]),
-                ],
+                'label' => 'Brand'
             ])
             ->add('carModel', TextType::class, [
                 'label' => 'Model'
@@ -43,23 +40,16 @@ class CreateCarType extends AbstractType
                 'label' => 'Production year',
                 'attr' => [
                     'placeholder' => 'example 2010'
-                ],
-                'constraints' => [
-                    new Length([
-                        'min' => 4,
-                        'max' => 4,
-                        'exactMessage' => 'Value is wrong. It should have 4 characters'
-                    ])
                 ]
             ])
-            ->add('typeOfFuel', TextType::class, [
-                'label' => 'Fuel'
+            ->add('typeOfFuel', ChoiceType::class, [
+                'label' => 'Fuel',
+                'choices' => Car::FUEL_TYPE_MAP
             ])
             ->add('capacity', IntegerType::class, [
                 'label' => 'Capacity ccm',
                 'attr' => [
-                    'placeholder' => 'example 1800',
-                    'maxlength' => '4' // doesn't work??
+                    'placeholder' => 'example 1800'
                 ]
             ])
             ->add('submit', SubmitType::class);
@@ -68,7 +58,7 @@ class CreateCarType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Car::class,
+            'data_class' => CarDto::class,
         ]);
     }
 }

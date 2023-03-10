@@ -9,6 +9,21 @@ use Symfony\Component\Validator\Constraints as SymfonyConstraints;
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 class Car
 {
+    public const FUEL_TYPE_PETROL = 'Petrol';
+    public const FUEL_TYPE_DIESEL = 'Diesel';
+    public const FUEL_TYPE_LPG = 'LPG';
+    public const FUEL_TYPES = [
+        self::FUEL_TYPE_DIESEL,
+        self::FUEL_TYPE_PETROL,
+        self::FUEL_TYPE_LPG
+    ];
+
+    public const FUEL_TYPE_MAP = [
+        Car::FUEL_TYPE_PETROL => Car::FUEL_TYPE_PETROL,
+        Car::FUEL_TYPE_DIESEL => Car::FUEL_TYPE_DIESEL,
+        Car::FUEL_TYPE_LPG => Car::FUEL_TYPE_LPG
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

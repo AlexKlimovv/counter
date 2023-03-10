@@ -20,6 +20,7 @@ class CarDeleteController extends AbstractController
     #[Route('/dashboard/car/{car}/delete', name: 'app_car_delete')]
     public function __invoke (Request $request, Car $car): Response
     {
+//        $this->denyAccessUnlessGranted();
         $this->entityManager->remove($car);
         $this->entityManager->flush();
         return $this->redirectToRoute("app_car");
