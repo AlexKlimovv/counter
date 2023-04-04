@@ -15,6 +15,7 @@
                 <th scope="col">Capacity ccm</th>
                 <th scope="col">Fuel</th>
                 <th scope="col">VIN</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -28,8 +29,10 @@
                 <td> {{ car.capacity }} </td>
                 <td> {{ car.typeOfFuel }} </td>
                 <td> {{ car.vin }} </td>
-                <td><a class="btn btn-warning" href="{{ path('app_car_edit', { car: car.id }) }}">Edit</a></td>
-                <td><a class="btn btn-danger" href="{{ path('app_car_delete', { car: car.id }) }}">Delete</a></td>
+                <td>
+                    <a class="btn btn-warning" href="{{ path('app_car_edit', { car: car.id }) }}">Edit</a>
+                    <a class="btn btn-danger" href="{{ path('app_car_delete', { car: car.id }) }}">Delete</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

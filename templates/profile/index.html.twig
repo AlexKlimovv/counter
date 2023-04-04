@@ -8,9 +8,10 @@
     </div>
 
 <div>
-    <p>Hello, {{ user.name }}</p>
-    <p>Hello, {{ user.email }}</p>
-    <a class="btn btn-primary" href="{{ path('app_profile_edit') }}">Edit profile</a>
+    <p>Hello, {{ user.lastname }} {{ user.name }}</p>
+    <p>E-mail: {{ user.email }}</p>
+    <p>Telephone number: {{ user.phoneNum }}</p>
+    <a class="btn btn-primary mb-3" href="{{ path('app_profile_edit') }}">Edit profile</a>
 </div>
 
 {% endblock %}
